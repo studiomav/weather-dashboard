@@ -27,7 +27,7 @@ function addHistoryButton(city)
 function apiSearch(input, saveHistory)
 {
     //create the api url for getting coordinates from a city name
-    var apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`;
+    var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`;
     //clear the search input field
     searchInput.val("");
     //first fetch
@@ -68,7 +68,7 @@ function apiSearch(input, saveHistory)
             cityCurrentHumidity.text(`Humidity: ${data.main.humidity}`);
         });
         //create the api url for getting the 5-day forecast from coordinates
-        apiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&cnt=5&units=metric`;
+        apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&cnt=5&units=metric`;
         //final fetch for 5-day forecast
         fetch(apiUrl)
         .then((response) => response.json())
@@ -88,12 +88,14 @@ function apiSearch(input, saveHistory)
 searchInput.keypress(function (e) {
   if (e.which == 13)
   {
+    if (searchInput.val() == "") return false;
     apiSearch(searchInput.val(), true);
     return false;
   }
 });
 searchButton.click(function()
 {
+    if (searchInput.val() == "") return false;
     apiSearch(searchInput.val(), true);
     return false;
 });
