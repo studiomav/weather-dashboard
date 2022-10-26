@@ -15,6 +15,7 @@ const cityCurrentTemp = $('#cityCurrentTemp');
 const cityCurrentWind = $('#cityCurrentWind');
 const cityCurrentHumidity = $('#cityCurrentHumidity');
 const searchHistory = $('#searchHistory');
+const clearDataButton = $('#clearData');
 
 //this adds a city button in the search history panel
 function addHistoryButton(city)
@@ -101,6 +102,14 @@ searchButton.click(function()
 $(document).on('click', '.searchHistoryButton', function()
 {
     apiSearch(this.getAttribute("city"), false);
+});
+
+//listen for clear data button and delete the saveData values and clear localStorage
+clearDataButton.click(function()
+{
+    searchHistory.text("");
+    saveData = [];
+    localStorage.clear();
 });
 
 //if save data exists from localStorage, iterate and add buttons for each city

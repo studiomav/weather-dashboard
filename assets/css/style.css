@@ -37,7 +37,7 @@ h1, h2, #searchInput, button
     width: 100%;
 }
 
-#breakLine
+.breakLine
 {
     width: 100%;
     height: 15px;
@@ -63,4 +63,10 @@ h1, h2, #searchInput, button
 .row
 {
     flex-wrap: nowrap;
+}
+
+#clearData
+{
+    background-color: blue;
+    color: white;
 }
