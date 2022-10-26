@@ -9,36 +9,45 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
+    <!--cosmetic header-->
     <header id="header"><h1>Weather Dashboard</h1></header>
+
+    <!--main bootstrap flex container with grid-based layout-->
     <div class="container text-center">
         <div class="row">
-          <div id="sidePanel" class="col-2">
-            <h2>Search for a City:</h2>
-            <input id="searchInput" type="text"></input>
-            <button id="searchButton">Search</button>
-            <div id="breakLine"></div>
-            <div id="searchHistory"></div>
-          </div>
-          <div id="mainPanel" class="col">
-            <div id="currentWeather">
-                <h2 id="cityName"></h2>
-                <p id="cityCurrentTemp"></p>
-                <p id="cityCurrentWind"></p>
-                <p id="cityCurrentHumidity"></p>
+            
+            <!--sidepanel for searching and search history-->
+            <div id="sidePanel" class="col-2">
+                <h2>Search for a City:</h2>
+                <input id="searchInput" type="text"></input>
+                <button id="searchButton">Search</button>
+                <div id="breakLine"></div>
+                <div id="searchHistory"></div>
             </div>
-            <div id="forecastContainer" class="container text-center">
-                <div class="row">
-                    <div id="day1" class="col fiveday"></div>
-                    <div id="day2" class="col fiveday"></div>
-                    <div id="day3" class="col fiveday"></div>
-                    <div id="day4" class="col fiveday"></div>
-                    <div id="day5" class="col fiveday"></div>
+
+            <!--main panel to display the current weather and 5 day forecast-->
+            <div id="mainPanel" class="col">
+                <div id="currentWeather">
+                    <h2 id="cityName"></h2>
+                    <p id="cityCurrentTemp"></p>
+                    <p id="cityCurrentWind"></p>
+                    <p id="cityCurrentHumidity"></p>
+                </div>
+                <div id="forecastContainer" class="container text-center">
+                    <div class="row">
+                        <div id="day1" class="col fiveday"></div>
+                        <div id="day2" class="col fiveday"></div>
+                        <div id="day3" class="col fiveday"></div>
+                        <div id="day4" class="col fiveday"></div>
+                        <div id="day5" class="col fiveday"></div>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
 </body>
+
+<!--scripts-->
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="./assets/js/index.js"></script>
 </html>
