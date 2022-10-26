@@ -9,10 +9,10 @@ const cityName = $('#cityName');
 const cityCurrentTemp = $('#cityCurrentTemp');
 const cityCurrentWind = $('#cityCurrentWind');
 const cityCurrentHumidity = $('#cityCurrentHumidity');
+const searchHistory = $('#searchHistory');
 
-function apiSearch()
+function apiSearch(input, saveHistory)
 {
-    var input = searchInput.val();
     var apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`;
     searchInput.val("");
     fetch(apiUrl)
@@ -24,6 +24,7 @@ function apiSearch()
     .then((data) => 
     {
         if (data == "") return cityName.text("City not found");
+        if (saveHistory) searchHistory.append(`<button class="searchHistoryButton" city="${data[0].name}">${data[0].name}</button>`);
         const date = new Date();
         cityName.text(`${data[0].name}, ${data[0].state} - ${date.toLocaleDateString()}`);
         var lat = data[0].lat;
@@ -59,12 +60,17 @@ function apiSearch()
 searchInput.keypress(function (e) {
   if (e.which == 13)
   {
-    apiSearch();
+    apiSearch(searchInput.val(), true);
     return false;
   }
 });
 
 searchButton.click(function()
 {
-    apiSearch();
+    apiSearch(searchInput.val(), true);
+});
+
+$(document).on('click', '.searchHistoryButton', function()
+{
+    apiSearch(this.getAttribute("city"), false);
 });
