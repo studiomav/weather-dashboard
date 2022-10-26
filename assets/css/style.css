@@ -1,0 +1,58 @@
+#header
+{
+    text-align: right;
+    font-weight: 600;
+    padding-right: 100px;
+    padding-top: 10px;
+    width: 100%;
+    height: 80px;
+    color: white;
+    background-color: blue;
+    margin-bottom: 20px;
+}
+
+#sidePanel
+{
+ min-width: 200px;
+ margin-bottom: 50px;
+}
+
+#mainPanel
+{
+    min-width: 400px;
+}
+
+#searchInput
+{
+    margin-bottom: 5px;
+}
+
+#searchButton
+{
+    margin-top: 5px;
+}
+
+h1, h2, #searchInput, button
+{
+    width: 100%;
+}
+
+#breakLine
+{
+    width: 100%;
+    height: 15px;
+    border-bottom: 2px solid gray;
+}
+
+#currentWeather
+{
+    border: 2px solid gray;
+    min-height: 200px;
+}
+
+.fiveday
+{
+    border: 2px solid gray;
+    margin: 5px;
+    min-height: 100px;
+}
