@@ -2,6 +2,9 @@
 const apiKey = "086f2712e0cfb8c5b7ff7d7ecfc92e59";
 const units = "metric";
 
+var saveData = JSON.parse(localStorage.getItem("mav-weather"));
+if (saveData == null) saveData = [];
+
 const searchInput = $('#searchInput');
 const searchButton = $('#searchButton');
 const currentWeather = $('#currentWeather');
@@ -10,6 +13,11 @@ const cityCurrentTemp = $('#cityCurrentTemp');
 const cityCurrentWind = $('#cityCurrentWind');
 const cityCurrentHumidity = $('#cityCurrentHumidity');
 const searchHistory = $('#searchHistory');
+
+function addHistoryButton(city)
+{
+    searchHistory.append(`<button class="searchHistoryButton" city="${city}">${city}</button>`);
+}
 
 function apiSearch(input, saveHistory)
 {
@@ -24,7 +32,12 @@ function apiSearch(input, saveHistory)
     .then((data) => 
     {
         if (data == "") return cityName.text("City not found");
-        if (saveHistory) searchHistory.append(`<button class="searchHistoryButton" city="${data[0].name}">${data[0].name}</button>`);
+        if (saveHistory)
+        {
+            addHistoryButton(data[0].name);
+            saveData.push(data[0].name);
+            localStorage.setItem("mav-weather", JSON.stringify(saveData));
+        }
         const date = new Date();
         cityName.text(`${data[0].name}, ${data[0].state} - ${date.toLocaleDateString()}`);
         var lat = data[0].lat;
@@ -74,3 +87,11 @@ $(document).on('click', '.searchHistoryButton', function()
 {
     apiSearch(this.getAttribute("city"), false);
 });
+
+if (saveData != null)
+{
+    saveData.forEach(city =>
+    {
+        addHistoryButton(city);
+    });
+}
